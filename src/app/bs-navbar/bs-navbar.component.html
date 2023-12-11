@@ -17,14 +17,21 @@
           <a class="nav-link" routerLink="/shopping-cart">Shopping Cart</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/login">login</a>
+          <a 
+            *ngIf="!user"
+            class="nav-link" 
+            routerLink="/login">
+            Login
+          </a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" 
+          <a 
+            *ngIf="user"
+            class="nav-link dropdown-toggle" 
             role="button" 
             data-bs-toggle="dropdown" 
             aria-expanded="false">
-            Username
+            {{user.displayName}}
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" routerLink="/my/orders">My Orders</a></li>

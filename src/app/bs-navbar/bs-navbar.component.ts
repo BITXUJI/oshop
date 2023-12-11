@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'bs-navbar',
@@ -8,10 +9,16 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 })
 export class BsNavbarComponent {
   user: any | null;
-  constructor(private afAuth: AngularFireAuth) {
+  constructor(
+    private afAuth: AngularFireAuth,
+    private router: Router
+
+  ) {
     afAuth.authState.subscribe(user => this.user = user);
   }
   logout() {
     this.afAuth.signOut();
+    this.router.navigate(['/login']);
+
   }
 }

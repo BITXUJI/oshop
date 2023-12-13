@@ -19,7 +19,6 @@ export class AuthService {
 
   login() {
     let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
-    // localStorage.setItem('returnUrl', returnUrl);
     this.afAuth.signInWithPopup(new GoogleAuthProvider()).
       then((x) => this.router.navigateByUrl(returnUrl)
       );

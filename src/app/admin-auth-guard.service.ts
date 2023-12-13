@@ -17,7 +17,7 @@ export class AdminAuthGuard {
   ): Observable<boolean> | Promise<boolean> | UrlTree | boolean {
     return this.auth.user$
       .pipe(switchMap(user => this.UserService.get(user.uid)))
-      .pipe(map(appUser => appUser.isAdmin));
+      .pipe(map(appUser => appUser.isAdmin || false));
   }
 
 }

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { UserService } from './user.service';
+import { AuthService } from './auth.service';
 
 
 @Component({
@@ -7,4 +9,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  constructor(private userService: UserService, private auth: AuthService) {
+    auth.user$.subscribe(user => {
+      if (user) {
+        userService.save(user);
+      }
+    });
+  }
 }

@@ -22,6 +22,7 @@ import { UserService } from './user.service';
 import { AdminAuthGuard } from './admin-auth-guard.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { CategoryService } from './category.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { CategoryService } from './category.service';
       messagingSenderId: "997564146672",
       appId: "1:997564146672:web:8405c265f359fa8be8f335",
       measurementId: "G-DQ7YR2D65J"
-    })
+    }),
+    FormsModule
   ],
   providers: [
     AuthService,

@@ -1,6 +1,7 @@
 import { Observable, of } from 'rxjs';
 import { CategoryService } from './../../category.service';
 import { Component } from '@angular/core';
+import { ProductService } from 'src/app/product.service';
 
 @Component({
   selector: 'app-product-form',
@@ -10,7 +11,12 @@ import { Component } from '@angular/core';
 export class ProductFormComponent {
   categories$: Observable<any> = of();
 
-  constructor(categoryService: CategoryService) {
+  constructor(
+    categoryService: CategoryService,
+    private productService: ProductService) {
     this.categories$ = categoryService.getCategories();
+  }
+  save(product: any) {
+    this.productService.create(product);
   }
 }

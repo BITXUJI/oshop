@@ -2,7 +2,7 @@ import { UserService } from './user.service';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable, map, switchMap } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +18,4 @@ export class AdminAuthGuard {
     return this.auth.appUser$
       .pipe(map(appUser => appUser.isAdmin || false));
   }
-
 }

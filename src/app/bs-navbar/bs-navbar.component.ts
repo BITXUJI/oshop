@@ -1,8 +1,6 @@
-import { UserService } from './../user.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { switchMap, Observable, of } from 'rxjs';
 import { AppUser } from '../models/app-user';
 
 
@@ -14,7 +12,6 @@ import { AppUser } from '../models/app-user';
 export class BsNavbarComponent {
   appUser: AppUser | any;
   constructor(
-    private UserService: UserService,
     private auth: AuthService,
     private router: Router
   ) {

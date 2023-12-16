@@ -28,9 +28,10 @@
             </a>
           </li>
         </ng-template>
-        <ng-container *ngIf="appUser; else anonymousUser">
+       
           <li class="nav-item dropdown">
             <a 
+            *ngIf="appUser; else anonymousUser"
               class="nav-link dropdown-toggle" 
               role="button" 
               data-bs-toggle="dropdown" 
@@ -67,7 +68,7 @@
               </li>
             </ul>
           </li>
-        </ng-container>
+       
       </ul>
     </div>
   </div>

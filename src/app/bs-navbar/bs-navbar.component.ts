@@ -2,7 +2,7 @@ import { UserService } from './../user.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { map, switchMap, Observable, of } from 'rxjs';
+import { switchMap, Observable, of } from 'rxjs';
 import { AppUser } from '../models/app-user';
 
 
@@ -12,19 +12,13 @@ import { AppUser } from '../models/app-user';
   styleUrls: ['./bs-navbar.component.css']
 })
 export class BsNavbarComponent {
-  appUser$: Observable<AppUser | null>;
+  appUser: AppUser | any;
   constructor(
     private UserService: UserService,
     private auth: AuthService,
     private router: Router
   ) {
-    this.appUser$ = this.auth.user$
-      .pipe(switchMap(user => {
-        if (user) {
-          return this.UserService.get(user.uid);
-        }
-        return of(null);
-      }));
+    this.auth.appUser$.subscribe(appUser => this.appUser = appUser);
   }
   logout() {
     this.auth.logout();

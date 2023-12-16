@@ -15,8 +15,7 @@ export class AdminAuthGuard {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | UrlTree | boolean {
-    return this.auth.user$
-      .pipe(switchMap(user => this.UserService.get(user.uid)))
+    return this.auth.appUser$
       .pipe(map(appUser => appUser.isAdmin || false));
   }
 

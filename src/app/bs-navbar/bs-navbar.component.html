@@ -28,15 +28,14 @@
             </a>
           </li>
         </ng-template>
-        <ng-container *ngIf="appUser$| async as user; else anonymousUser">
+        <ng-container *ngIf="appUser; else anonymousUser">
           <li class="nav-item dropdown">
             <a 
-              *ngIf="user!==undefined; else anonymousUser"
               class="nav-link dropdown-toggle" 
               role="button" 
               data-bs-toggle="dropdown" 
               aria-expanded="false">
-              {{user.name}}
+              {{appUser.name}}
             </a>
             <ul class="dropdown-menu">
               <li>
@@ -45,7 +44,7 @@
                   My Orders
                 </a>
               </li>
-              <ng-container *ngIf="(appUser$|async)?.isAdmin">
+              <ng-container *ngIf="appUser?.isAdmin">
                 <li>
                   <a class="dropdown-item" 
                     routerLink="/admin/orders">

@@ -13,6 +13,7 @@ export class ProductFormComponent {
   categories$: Observable<any> = of();
   product: any = {};
   productSubscription$;
+  id: any;
 
   constructor(
     private router: Router,
@@ -22,14 +23,16 @@ export class ProductFormComponent {
 
     this.categories$ = categoryService.getCategories();
 
-    let id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.productSubscription$ = this.productService.get(id)
+    this.id = this.route.snapshot.paramMap.get('id');
+    if (this.id) {
+      this.productSubscription$ = this.productService.get(this.id)
         .subscribe(p => this.product = p);
     }
   }
   save(product: any) {
-    this.productService.create(product);
+    if (this.id) this.productService.update(this.id, product);
+    else this.productService.create(product);
+
     this.router.navigate(['/admin/products']);
   }
   ngOnDestory() {

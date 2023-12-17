@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ProductService } from 'src/app/product.service';
 
 @Component({
@@ -8,9 +8,24 @@ import { ProductService } from 'src/app/product.service';
   styleUrls: ['./admin-products.component.css']
 })
 export class AdminProductsComponent {
-  products$: Observable<any>;
+  products: any[] = [];
+  filteredProducts: any[] = [];
+  subscription: Subscription;
 
   constructor(private productService: ProductService) {
-    this.products$ = productService.getAll();
+    this.subscription = this.productService.getAll()
+      .subscribe(products => this.filteredProducts = this.products = products);
+  }
+
+  filter(query: string) {
+    this.filteredProducts = (query) ?
+      this.products.filter(
+        p => p.payload.val().title.toLowerCase().includes(query.toLowerCase())
+      ) :
+      this.products;
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

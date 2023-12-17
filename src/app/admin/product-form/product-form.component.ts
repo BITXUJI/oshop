@@ -2,6 +2,7 @@ import { Observable, of } from 'rxjs';
 import { CategoryService } from '../../category.service';
 import { Component } from '@angular/core';
 import { ProductService } from 'src/app/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-form',
@@ -12,11 +13,13 @@ export class ProductFormComponent {
   categories$: Observable<any> = of();
 
   constructor(
-    categoryService: CategoryService,
+    private router: Router,
+    private categoryService: CategoryService,
     private productService: ProductService) {
     this.categories$ = categoryService.getCategories();
   }
   save(product: any) {
     this.productService.create(product);
+    this.router.navigate(['/admin/products']);
   }
 }

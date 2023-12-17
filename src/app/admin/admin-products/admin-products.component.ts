@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ProductService } from 'src/app/product.service';
 
 @Component({
   selector: 'app-admin-products',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin-products.component.css']
 })
 export class AdminProductsComponent {
+  products$: Observable<any>;
 
+  constructor(private productService: ProductService) {
+    this.products$ = productService.getAll();
+  }
 }

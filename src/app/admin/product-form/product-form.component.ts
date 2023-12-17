@@ -29,12 +29,22 @@ export class ProductFormComponent {
         .subscribe(p => this.product = p);
     }
   }
+
   save(product: any) {
     if (this.id) this.productService.update(this.id, product);
     else this.productService.create(product);
 
     this.router.navigate(['/admin/products']);
   }
+
+  delete() {
+    if (!confirm('Are you sure you want to delete this products?')) return;
+
+    this.productService.delete(this.id);
+    this.router.navigate(['/admin/products']);
+  }
+
+
   ngOnDestory() {
     this.productSubscription$?.unsubscribe();
   }

@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ProductService } from 'src/app/product.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-admin-products',
@@ -8,21 +11,33 @@ import { ProductService } from 'src/app/product.service';
   styleUrls: ['./admin-products.component.css']
 })
 export class AdminProductsComponent {
-  products: any[] = [];
-  filteredProducts: any[] = [];
+  displayedColumns: string[] = ['title', 'price', 'key'];
+  dataSource!: MatTableDataSource<any>;
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
   subscription: Subscription;
 
   constructor(private productService: ProductService) {
     this.subscription = this.productService.getAll()
-      .subscribe(products => this.filteredProducts = this.products = products);
+      .subscribe(products => {
+        this.dataSource = new MatTableDataSource((products as any[]).
+          map(p => ({ key: p.key, ...p.payload.val() })));
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        this.dataSource.filterPredicate = (data, filter: string) => {
+          const transformedFilter = filter.trim().toLowerCase();
+          return data.title.toLowerCase().includes(transformedFilter) ||
+            data.price.toString().toLowerCase().includes(transformedFilter);
+        }
+      });
   }
 
   filter(query: string) {
-    this.filteredProducts = (query) ?
-      this.products.filter(
-        p => p.payload.val().title.toLowerCase().includes(query.toLowerCase())
-      ) :
-      this.products;
+    this.dataSource.filter = query.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   ngOnDestroy() {

@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -23,6 +24,9 @@ import { AdminAuthGuard } from './admin-auth-guard.service';
 import { CategoryService } from './category.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -54,7 +58,11 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
       appId: "1:997564146672:web:8405c265f359fa8be8f335",
       measurementId: "G-DQ7YR2D65J"
     }),
-    FormsModule
+    FormsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    BrowserAnimationsModule
   ],
   providers: [
     AuthService,

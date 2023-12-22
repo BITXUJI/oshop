@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../product.service';
-import { Observable, switchMap } from 'rxjs';
-import { CategoryService } from '../category.service';
+import { switchMap } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -10,8 +9,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent {
-  // products$: Observable<any>;
-  categories$: Observable<any>;
   products: any[] = [];
   filteredProducts: any[] = [];
   category: string | null = null;
@@ -19,7 +16,6 @@ export class ProductsComponent {
   constructor(
     route: ActivatedRoute,
     productService: ProductService,
-    categoryService: CategoryService,
   ) {
     productService.getAll().pipe(switchMap(products => {
       this.products = products;
@@ -31,7 +27,5 @@ export class ProductsComponent {
         this.products.filter(p => p.payload.val().category === this.category) :
         this.products;
     });
-
-    this.categories$ = categoryService.getAll();
   }
 }

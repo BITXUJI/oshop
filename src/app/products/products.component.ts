@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../product.service';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { CategoryService } from '../category.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -14,24 +14,24 @@ export class ProductsComponent {
   categories$: Observable<any>;
   products: any[] = [];
   filteredProducts: any[] = [];
-  category: string = '';
+  category: string | null = null;
 
   constructor(
     route: ActivatedRoute,
     productService: ProductService,
     categoryService: CategoryService,
   ) {
-    productService.getAll().subscribe(products => this.products = products);
-
-    this.categories$ = categoryService.getAll();
-
-    route.queryParamMap.subscribe(params => {
-      this.category = params.get('category') || '';
+    productService.getAll().pipe(switchMap(products => {
+      this.products = products;
+      return route.queryParamMap;
+    })).subscribe(params => {
+      this.category = params.get('category');
 
       this.filteredProducts = (this.category) ?
         this.products.filter(p => p.payload.val().category === this.category) :
         this.products;
     });
 
+    this.categories$ = categoryService.getAll();
   }
 }

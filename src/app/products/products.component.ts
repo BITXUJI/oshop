@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../product.service';
-import { Observable, ObservedValueOf } from 'rxjs';
+import { Observable } from 'rxjs';
+import { CategoryService } from '../category.service';
 
 @Component({
   selector: 'app-products',
@@ -9,8 +10,10 @@ import { Observable, ObservedValueOf } from 'rxjs';
 })
 export class ProductsComponent {
   products$: Observable<any>;
+  categories$: Observable<any>
 
-  constructor(productService: ProductService) {
+  constructor(productService: ProductService, categoryService: CategoryService) {
     this.products$ = productService.getAll();
+    this.categories$ = categoryService.getAll();
   }
 }

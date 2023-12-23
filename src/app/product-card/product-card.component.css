@@ -1,0 +1,12 @@
+.card-footer {
+    padding: 0;
+}
+
+.card {
+    margin-bottom: 30px;
+}
+
+.btn {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}

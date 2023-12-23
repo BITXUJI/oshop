@@ -1,4 +1,4 @@
-import { Observable, of } from 'rxjs';
+import { Observable, of, take } from 'rxjs';
 import { CategoryService } from '../../category.service';
 import { Component } from '@angular/core';
 import { ProductService } from 'src/app/product.service';
@@ -12,7 +12,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ProductFormComponent {
   categories$: Observable<any> = of();
   product: any = {};
-  productSubscription$;
   id: any;
 
   constructor(
@@ -25,7 +24,7 @@ export class ProductFormComponent {
 
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) {
-      this.productSubscription$ = this.productService.get(this.id)
+      this.productService.get(this.id).pipe(take(1))
         .subscribe(p => this.product = p);
     }
   }
@@ -44,8 +43,4 @@ export class ProductFormComponent {
     this.router.navigate(['/admin/products']);
   }
 
-
-  ngOnDestory() {
-    this.productSubscription$?.unsubscribe();
-  }
 }

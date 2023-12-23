@@ -16,7 +16,7 @@ export class ProductFormComponent {
         title: new FormControl('', Validators.required),
         price: new FormControl('', [Validators.required, Validators.min(0)]),
         category: new FormControl('', Validators.required),
-        imageURL: new FormControl('', [Validators.required,
+        imageUrl: new FormControl('', [Validators.required,
         Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')])
     });
     constructor(
@@ -40,7 +40,7 @@ export class ProductFormComponent {
     get category() {
         return this.productForm.get('category');
     }
-    get imageURL() {
-        return this.productForm.get('imageURL');
+    get imageUrl() {
+        return this.productForm.get('imageUrl');
     }
 }

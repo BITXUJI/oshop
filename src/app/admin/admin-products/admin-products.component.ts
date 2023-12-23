@@ -20,8 +20,7 @@ export class AdminProductsComponent {
   constructor(private productService: ProductService) {
     this.subscription = this.productService.getAll()
       .subscribe(products => {
-        this.dataSource = new MatTableDataSource((products as any[]).
-          map(p => ({ key: p.key, ...p.payload.val() })));
+        this.dataSource = new MatTableDataSource(products);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         this.dataSource.filterPredicate = (data, filter: string) => {

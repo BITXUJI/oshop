@@ -6,15 +6,8 @@
         <div class="row">
             <ng-container *ngFor="let p of filteredProducts,let i = index">
                 <div class="col">
-                    <div 
-                        class="card" style="width: 15rem;">
-                        <img [src]="p.payload.val()?.imageURL" class="card-img-top" alt="Card image cap">
-                        <div class="card-body">
-                            <h4 class="card-title">{{p.payload.val()?.title}}</h4>
-                            <p class="card-text">{{p.payload.val().price|currency:'USD'}}</p>
-                            <a href="#" class="btn btn-primary">Add to Cart</a>
-                        </div>
-                    </div>
+                    <product-card [product]="p.payload.val()" [show-actions]="true">
+                    </product-card>
                 </div>
                 <div *ngIf="(i+1)%2===0" class="w-100"></div>
             </ng-container>

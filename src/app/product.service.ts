@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { Observable, map } from 'rxjs';
+import { map } from 'rxjs';
 import { Product } from './models/product';
 interface OriginalType {
   key: string;
@@ -20,7 +20,7 @@ export class ProductService {
 
   constructor(private db: AngularFireDatabase) { }
 
-  create(product: any) {
+  create(product: Product) {
     this.db.list('/products').push(product);
   }
   getAll() {
@@ -28,13 +28,13 @@ export class ProductService {
       .pipe(map(array => array.map(
         item => ({ key: item.key, ...item.payload.val() }))));
   }
-  get(productId: any) {
+  get(productId: string) {
     return this.db.object('/products/' + productId).valueChanges();
   }
-  update(productId: any, product: any) {
+  update(productId: string, product: Product) {
     return this.db.object('/products/' + productId).update(product);
   }
-  delete(productId: any) {
+  delete(productId: string) {
     return this.db.object('/products/' + productId).remove();
   }
 }

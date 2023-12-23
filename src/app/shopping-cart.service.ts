@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { map } from 'rxjs';
+import { Product } from './models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class ShoppingCartService {
   }
 
   private getCart(cartId: string) {
-    return this.db.object('/shopping-carts/' + cartId).snapshotChanges();
+    return this.db.object('/shopping-carts/' + cartId).valueChanges();
   }
 
   private async getOrCreateCart() {
@@ -31,7 +33,7 @@ export class ShoppingCartService {
     } else return this.getCart(cartId);
   }
 
-  addToCart(product: any) {
+  addToCart(product: Product) {
 
   }
 }

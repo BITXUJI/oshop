@@ -3,6 +3,7 @@ import { CategoryService } from '../../category.service';
 import { Component } from '@angular/core';
 import { ProductService } from 'src/app/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Product } from 'src/app/models/product';
 
 @Component({
   selector: 'app-product-form',
@@ -29,7 +30,7 @@ export class ProductFormComponent {
     }
   }
 
-  save(product: any) {
+  save(product: Product) {
     if (this.id) this.productService.update(this.id, product);
     else this.productService.create(product);
 

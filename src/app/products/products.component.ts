@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../product.service';
-import { switchMap } from 'rxjs';
+import { switchMap, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../models/product';
+import { ShoppingCartService } from '../shopping-cart.service';
 
 @Component({
   selector: 'app-products',
@@ -13,10 +14,13 @@ export class ProductsComponent {
   products: Product[] = [];
   filteredProducts: Product[] = [];
   category: string | null = null;
+  cart: any;
+  subscription!: Subscription;
 
   constructor(
     route: ActivatedRoute,
     productService: ProductService,
+    private shoppingCartService: ShoppingCartService
   ) {
     productService.getAll().pipe(switchMap(products => {
       this.products = products as Product[];
@@ -28,5 +32,14 @@ export class ProductsComponent {
         this.products.filter(p => p.category === this.category) :
         this.products;
     });
+  }
+
+  async ngOnInit() {
+    this.subscription = (await this.shoppingCartService.getCart())
+      .subscribe(cart => this.cart = cart);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

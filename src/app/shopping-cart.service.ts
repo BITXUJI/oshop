@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { take } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { Product } from './models/product';
+import { ShoppingCart } from './models/shopping-cart';
 interface ShoppingCartItem {
   quantity: number;
   product: {
     title: string;
-    price: string;
+    price: number;
     category: string;
     imageUrl: string;
   };
@@ -25,9 +26,9 @@ export class ShoppingCartService {
     });
   }
 
-  async getCart() {
+  async getCart(): Promise<Observable<ShoppingCart | null>> {
     let cartId = await this.getOrCreateCartId();
-    return this.db.object('/shopping-carts/' + cartId).valueChanges();
+    return this.db.object<ShoppingCart>('/shopping-carts/' + cartId).valueChanges();
   }
 
   private getItem(cartId: string, productId: string) {

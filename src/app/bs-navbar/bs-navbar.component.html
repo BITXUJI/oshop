@@ -17,6 +17,9 @@
           <a class="nav-link" 
             routerLink="/shopping-cart">
             Shopping Cart
+            <span class="badge rounded-pill text-bg-warning">
+              {{shoppingCartItemCount}}
+            </span>
           </a>
         </li>
         <ng-template #anonymousUser>
@@ -28,16 +31,15 @@
             </a>
           </li>
         </ng-template>
-       
-          <li class="nav-item dropdown">
-            <a 
-            *ngIf="appUser; else anonymousUser"
-              class="nav-link dropdown-toggle" 
-              role="button" 
-              data-bs-toggle="dropdown" 
-              aria-expanded="false">
-              {{appUser.name}}
-            </a>
+        <li class="nav-item dropdown">
+          <a 
+          *ngIf="appUser; else anonymousUser"
+            class="nav-link dropdown-toggle" 
+            role="button" 
+            data-bs-toggle="dropdown" 
+            aria-expanded="false">
+            {{appUser.name}}
+          </a>
             <ul class="dropdown-menu">
               <li>
                 <a class="dropdown-item" 
@@ -67,8 +69,7 @@
                 </a>
               </li>
             </ul>
-          </li>
-       
+        </li>
       </ul>
     </div>
   </div>

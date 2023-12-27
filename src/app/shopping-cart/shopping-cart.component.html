@@ -10,12 +10,12 @@
             <th></th>
         </thead>
         <tbody>
-            <tr *ngFor="let productValue of cart.productValues">
+            <tr *ngFor="let item of cart.itemsArray">
                 <td>
-                    {{ productValue.product.title }}
+                    {{ item.product.title }}
                 </td>
                 <td>
-                    {{ productValue.quantity }}
+                    {{ item.quantity }}
                 </td>
                 <td></td>
             </tr>

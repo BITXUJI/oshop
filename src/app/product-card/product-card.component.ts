@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ShoppingCartService } from '../shopping-cart.service';
 import { Product } from '../models/product';
+import { ShoppingCart } from '../models/shopping-cart';
 
 @Component({
   selector: 'product-card',
@@ -10,7 +11,7 @@ import { Product } from '../models/product';
 export class ProductCardComponent {
   @Input('product') product!: Product;
   @Input('show-actions') showActions = true;
-  @Input('shopping-cart') shoppingCart: any;
+  @Input('shopping-cart') shoppingCart: ShoppingCart | null = null;
 
   constructor(private cartService: ShoppingCartService) { }
 

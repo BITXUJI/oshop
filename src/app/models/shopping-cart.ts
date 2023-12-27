@@ -1,19 +1,17 @@
 import { ShoppingCartItem } from "./shopping-cart-item";
 
 export class ShoppingCart {
+    itemsArray: ShoppingCartItem[] = [];
 
-    constructor(public items: ShoppingCartItem[]) { }
+    constructor(public items: { [productId: string]: ShoppingCartItem }) {
+        for (const productId in items)
+            this.itemsArray.push(items[productId]);
+    }
 
-    get productIds() {
-        return Object.keys(this.items);
-    }
-    get productValues() {
-        return Object.values(this.items);
-    }
     get totalItemsCount() {
         let shoppingCartItemCount = 0;
-        for (const productId in this.items) {
-            shoppingCartItemCount += (this.items)[productId as any].quantity;
+        for (const item of this.itemsArray) {
+            shoppingCartItemCount += item.quantity;
         }
         return shoppingCartItemCount;
     }

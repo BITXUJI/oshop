@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ShoppingCartService } from '../shopping-cart.service';
+import { Observable, of } from 'rxjs';
+import { ShoppingCart } from '../models/shopping-cart';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -6,5 +9,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent {
+  cart$: Observable<ShoppingCart | null> = of();
+  constructor(private shoppingCartService: ShoppingCartService) { }
 
+  async ngOnInit() {
+    this.cart$ = await this.shoppingCartService.getCart();
+  }
 }

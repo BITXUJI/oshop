@@ -4,6 +4,7 @@ import { Observable, map, take } from 'rxjs';
 import { Product } from './models/product';
 import { ShoppingCart } from './models/shopping-cart';
 import { ShoppingCartItem } from './models/shopping-cart-item';
+import { FirebaseShoppingCart } from './models/firebase-shopping-cart';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,11 @@ export class ShoppingCartService {
 
   async getCart(): Promise<Observable<ShoppingCart | null>> {
     let cartId = await this.getOrCreateCartId();
-    return this.db.object<ShoppingCart>('/shopping-carts/' + cartId).valueChanges().
-      pipe(map(x => { if (x) return new ShoppingCart(x.items); return null }));
+    return this.db.object<FirebaseShoppingCart>('/shopping-carts/' + cartId)
+      .valueChanges().pipe(map(x => {
+        if (x) return new ShoppingCart(x.items);
+        return null
+      }));
   }
 
   async addToCart(product: Product) {

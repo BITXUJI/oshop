@@ -1,10 +1,11 @@
+import { FirebaseShoppingCart } from './firebase-shopping-cart';
 import { Product } from "./product";
 import { ShoppingCartItem } from "./shopping-cart-item";
 
 export class ShoppingCart {
     itemsArray: ShoppingCartItem[] = [];
 
-    constructor(public items: { [productId: string]: ShoppingCartItem }) {
+    constructor(private items: FirebaseShoppingCart["items"]) {
         this.items = items || {};
         for (const productId in items) {
             let item = items[productId];

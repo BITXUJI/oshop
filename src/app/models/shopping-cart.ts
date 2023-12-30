@@ -5,9 +5,13 @@ export class ShoppingCart {
     itemsArray: ShoppingCartItem[] = [];
 
     constructor(public items: { [productId: string]: ShoppingCartItem }) {
+        this.items = items || {};
         for (const productId in items) {
             let item = items[productId];
-            this.itemsArray.push(new ShoppingCartItem(item.product, item.quantity));
+            let x = new ShoppingCartItem();
+            Object.assign(x, item);
+            x.key = productId;
+            this.itemsArray.push(x);
         }
 
     }

@@ -9,7 +9,7 @@ import { ShoppingCartService } from '../shopping-cart.service';
   styleUrls: ['./product-quantity.component.css']
 })
 export class ProductQuantityComponent {
-  @Input('product') product!: Product;
+  @Input('product') product: any;
   @Input('shopping-cart') shoppingCart: ShoppingCart | null = null;
 
   constructor(private cartService: ShoppingCartService) { }

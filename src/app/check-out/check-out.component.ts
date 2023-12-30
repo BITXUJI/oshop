@@ -1,4 +1,8 @@
+import { Subscription } from 'rxjs';
 import { Component } from '@angular/core';
+import { ShoppingCartService } from '../shopping-cart.service';
+import { ShoppingCart } from '../models/shopping-cart';
+import { OrderService } from '../order.service';
 
 @Component({
   selector: 'app-check-out',
@@ -7,8 +11,39 @@ import { Component } from '@angular/core';
 })
 export class CheckOutComponent {
   shipping: any = {};
+  cart: ShoppingCart | null = null;
+  subscription!: Subscription;
+
+  constructor(
+    private orderService: OrderService,
+    private shoppingCartService: ShoppingCartService) { }
+
+  async ngOnInit() {
+    let cart$ = await this.shoppingCartService.getCart();
+    this.subscription = cart$.subscribe(cart => this.cart = cart);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
   placeOrder() {
-    console.log(this.shipping);
+    let order = {
+      datePlaced: new Date().getTime(),
+      shipping: this.shipping,
+      items: this.cart?.itemsArray.map(i => {
+        return {
+          product: {
+            title: i.title,
+            imageUrl: i.imageUrl,
+            price: i.price
+          },
+          quantity: i.quantity,
+          totalPrice: i.totalPrice
+        }
+      })
+    }
+
+    this.orderService.storeOrder(order);
   }
 }

@@ -5,6 +5,10 @@ export class ShoppingCartItem {
     quantity!: number;
     key!: string;
 
+    constructor(init?: Partial<ShoppingCartItem>) {
+        console.log(init);
+        Object.assign(this, init);
+    }
     get totalPrice() {
         return this.price * this.quantity;
     }

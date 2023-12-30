@@ -6,7 +6,6 @@ export class ShoppingCartItem {
     key!: string;
 
     constructor(init?: Partial<ShoppingCartItem>) {
-        console.log(init);
         Object.assign(this, init);
     }
     get totalPrice() {

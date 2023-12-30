@@ -30,6 +30,7 @@ export class AuthService {
   logout() {
     this.afAuth.signOut();
   }
+
   get appUser$(): Observable<AppUser | any> {
     return this.user$.pipe(switchMap(user => {
       if (user) {

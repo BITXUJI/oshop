@@ -1,3 +1,4 @@
+import { Product } from "./product";
 import { ShoppingCartItem } from "./shopping-cart-item";
 
 export class ShoppingCart {
@@ -5,7 +6,6 @@ export class ShoppingCart {
 
     constructor(public items: { [productId: string]: ShoppingCartItem }) {
         for (const productId in items) {
-            // this.itemsArray.push(items[productId]);
             let item = items[productId];
             this.itemsArray.push(new ShoppingCartItem(item.product, item.quantity));
         }
@@ -26,5 +26,10 @@ export class ShoppingCart {
             sum += item.totalPrice;
         }
         return sum;
+    }
+
+    getQuantity(product: Product) {
+        let item = this.items[product.key];
+        return item ? item.quantity : 0;
     }
 }

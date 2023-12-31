@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { Order } from '../shared/models/order';
+import { Order } from '../../../shared/models/order';
 import { Router } from '@angular/router';
-import { AuthService } from '../shared/services/auth.service';
-import { OrderService } from '../shared/services/order.service';
-import { ShoppingCart } from '../shared/models/shopping-cart';
+import { AuthService } from '../../../shared/services/auth.service';
+import { OrderService } from '../../../shared/services/order.service';
+import { ShoppingCart } from '../../../shared/models/shopping-cart';
 import { Subscription } from 'rxjs';
 
 @Component({

@@ -11,7 +11,7 @@ export class OrderService {
     private db: AngularFireDatabase,
     private shoppingCartService: ShoppingCartService) { }
 
-  async storeOrder(order: any) {
+  async placeOrder(order: any) {
     let result = await this.db.list('/orders').push(order);
     this.shoppingCartService.clearCart();
     return result;

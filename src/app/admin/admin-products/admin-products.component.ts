@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ProductService } from 'src/app/product.service';
+import { ProductService } from 'shared/services/product.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';

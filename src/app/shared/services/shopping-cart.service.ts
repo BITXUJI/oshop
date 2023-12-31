@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Observable, map, take } from 'rxjs';
-import { Product } from './models/product';
-import { ShoppingCart } from './models/shopping-cart';
-import { ShoppingCartItem } from './models/shopping-cart-item';
-import { FirebaseShoppingCart } from './models/firebase-shopping-cart';
+import { Product } from '../models/product';
+import { ShoppingCart } from '../models/shopping-cart';
+import { ShoppingCartItem } from '../models/shopping-cart-item';
+import { FirebaseShoppingCart } from '../models/firebase-shopping-cart';
 
 @Injectable({
   providedIn: 'root'

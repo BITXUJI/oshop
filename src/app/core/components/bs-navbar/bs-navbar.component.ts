@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../shared/services/auth.service';
-import { AppUser } from '../shared/models/app-user';
-import { ShoppingCartService } from '../shared/services/shopping-cart.service';
+import { AuthService } from '../../../shared/services/auth.service';
+import { AppUser } from '../../../shared/models/app-user';
+import { ShoppingCartService } from '../../../shared/services/shopping-cart.service';
 import { Observable, of } from 'rxjs';
-import { ShoppingCart } from '../shared/models/shopping-cart';
+import { ShoppingCart } from '../../../shared/models/shopping-cart';
 
 
 @Component({

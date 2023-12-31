@@ -2,18 +2,11 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import { MatTableModule } from '@angular/material/table';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from 'shared/shared.module';
 
-import { AdminAuthGuard } from './admin-auth-guard.service';
-import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
-import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
-import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
@@ -38,16 +31,14 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     CheckOutComponent,
     OrderSuccessComponent,
     MyOrdersComponent,
-    AdminProductsComponent,
-    AdminOrdersComponent,
     LoginComponent,
-    ProductFormComponent,
     ProductFilterComponent,
     ShoppingCartSummaryComponent,
     ShippingFormComponent
   ],
   imports: [
-    ReactiveFormsModule,
+    FormsModule,
+    AdminModule,
     SharedModule,
     BrowserModule,
     AppRoutingModule,
@@ -62,15 +53,9 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
       appId: "1:997564146672:web:8405c265f359fa8be8f335",
       measurementId: "G-DQ7YR2D65J"
     }),
-    FormsModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    BrowserAnimationsModule
+
   ],
-  providers: [
-    AdminAuthGuard
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

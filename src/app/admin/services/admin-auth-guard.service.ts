@@ -1,6 +1,6 @@
-import { UserService } from './shared/services/user.service';
+import { UserService } from '../../shared/services/user.service';
 import { Injectable } from '@angular/core';
-import { AuthService } from './shared/services/auth.service';
+import { AuthService } from '../../shared/services/auth.service';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable, map } from 'rxjs';
 

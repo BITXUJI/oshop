@@ -1,5 +1,5 @@
 import { Observable, of, take } from 'rxjs';
-import { CategoryService } from '../../shared/services/category.service';
+import { CategoryService } from '../../../shared/services/category.service';
 import { Component } from '@angular/core';
 import { ProductService } from 'shared/services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';

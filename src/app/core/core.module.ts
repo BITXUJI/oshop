@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { SharedModule } from 'shared/shared.module';
 
 import { BsNavbarComponent } from './components/bs-navbar/bs-navbar.component';
 import { HomeComponent } from './components/home/home.component';
@@ -15,7 +15,7 @@ import { CoreRoutingModule } from './core-routing.module';
     LoginComponent
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     CoreRoutingModule
   ],
   exports: [

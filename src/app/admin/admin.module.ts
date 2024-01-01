@@ -1,10 +1,4 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import { MatTableModule } from '@angular/material/table';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from 'shared/shared.module';
 
 import { AdminRoutingModule } from './admin-routing.module';
@@ -19,17 +13,11 @@ import { AdminAuthGuard } from './services/admin-auth-guard.service';
   declarations: [
     AdminProductsComponent,
     AdminOrdersComponent,
-    ProductFormComponent,
+    ProductFormComponent
   ],
   imports: [
-    CommonModule,
     SharedModule,
-    FormsModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    AdminRoutingModule,
-    BrowserAnimationsModule
+    AdminRoutingModule
   ],
   providers: [
     AdminAuthGuard

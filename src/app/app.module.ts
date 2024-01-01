@@ -1,9 +1,5 @@
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { SharedModule } from 'shared/shared.module';
 
 import { AdminModule } from './admin/admin.module';
@@ -17,15 +13,11 @@ import { ShoppingModule } from './shopping/shopping.module';
     AppComponent
   ],
   imports: [
-    FormsModule,
     CoreModule,
     ShoppingModule,
     AdminModule,
     SharedModule,
-    BrowserModule,
     AppRoutingModule,
-    AngularFireAuthModule,
-    AngularFireDatabaseModule,
     AngularFireModule.initializeApp({
       apiKey: "AIzaSyDRYbyclcUlvkm57lYTach_TtUhpZDi4eY",
       authDomain: "oshop-9b2ca.firebaseapp.com",

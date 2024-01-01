@@ -1,6 +1,10 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/">O</a>
+    <a class="navbar-brand" routerLink="/">
+      <span class="material-symbols-outlined">
+        eco
+      </span>
+    </a>
     <button class="navbar-toggler" 
       type="button" 
       data-bs-toggle="collapse" 
@@ -16,7 +20,9 @@
         <li class="nav-item">
           <a class="nav-link" 
             routerLink="/shopping-cart">
-            Shopping Cart
+            <span class="material-symbols-outlined">
+              shopping_cart
+            </span>
             <span class="badge rounded-pill text-bg-warning" *ngIf="cart$|async as cart">
               {{cart.totalItemsCount}}
             </span>
